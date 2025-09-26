@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18 # Optional, only if you use React/Node tools
+    commands:
+      - echo "Installing dependencies (if any)..."
+      - if [ -f package.json ]; then npm install; fi
+  build:
+    commands:
+      - echo "Building project..."
+      - if [ -f package.json ]; then npm run build; fi
+  post_build:
+    commands:
+      - echo "Build completed. Preparing artifacts..."
+
+artifacts:
+  files:
+    - "**/*"
+  base-directory: build # for React apps → 'build', for plain HTML use '.'
+  discard-paths: no
