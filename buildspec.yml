@@ -6,7 +6,8 @@ phases:
       nodejs: 18
     commands:
       - echo Installing dependencies...
-      - npm ci --legacy-peer-deps
+      # use install instead of ci to avoid lockfile issues
+      - npm install --legacy-peer-deps
 
   build:
     commands:
@@ -16,5 +17,8 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: dist
+  # 👇 change this depending on your framework
+  base-directory: build   # for Create React App
+  # base-directory: dist   # for Vite or Next.js static export
   discard-paths: no
+
